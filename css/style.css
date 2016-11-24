@@ -1,0 +1,23 @@
+body {
+  margin: 0 5rem 0 5rem; }
+
+.glyphicon-circle-arrow-up:hover, .glyphicon-circle-arrow-down:hover {
+  opacity: 0.7;
+  transform: scale(1.05);
+  cursor: pointer; }
+
+.glyphicon-circle-arrow-up {
+  color: green; }
+
+.glyphicon-circle-arrow-down {
+  color: maroon; }
+
+.items {
+  font-size: 3rem;
+  margin-left: 1rem; }
+
+.form-group {
+  margin-top: 3rem; }
+
+.form-control {
+  margin: 1rem 0 1rem 0; }
