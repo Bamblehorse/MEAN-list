@@ -1,4 +1,4 @@
-# Simple-Gulp-Workflow
+# MEAN list app
 
 A MEAN stack application. Inspired by [thinkster.io](https://thinkster.io/mean-stack-tutorial)
 
