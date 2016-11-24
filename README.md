@@ -41,4 +41,3 @@ If the project hasn't automatically opened in your browser, [click here.](http:/
 
 ## License
 See the [license](LICENSE) file for details
-# MEAN-list
