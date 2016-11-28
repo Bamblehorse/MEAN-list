@@ -92,6 +92,14 @@ router.put('/items/:item/comments/:comment/upvote', function(req, res, next) {
 	});
 });
 
+router.get('items/:item', function(req, res, next) {
+	req.item.populate('comments', function( err, item) {
+		if (err) {return next(err); }
+
+		res.json(item);
+	});
+});
+
 module.exports = router;
 
 
