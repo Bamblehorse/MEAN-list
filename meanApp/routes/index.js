@@ -47,6 +47,14 @@ router.get('/items/:item', function(req, res) {
 	res.json(req.item);
 });
 
+router.put('/items/:item/upvote', function(req, res, next) {
+	req.item.upvote(function(err, post) {
+		if (err) { return next(err); }
+
+		res.json(post);
+	});
+});
+
 module.exports = router;
 
 
