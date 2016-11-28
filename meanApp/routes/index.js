@@ -84,7 +84,23 @@ router.put('/items/:item/upvote', function(req, res, next) {
 	});
 });
 
+router.put('/items/:item/downvote', function(req, res, next) {
+	req.item.upvote(function(err, item) {
+		if (err) { return next(err); }
+
+		res.json(item);
+	});
+});
+
 router.put('/items/:item/comments/:comment/upvote', function(req, res, next) {
+	req.comment.upvote(function(err, comment) {
+		if (err) { return next(err); }
+
+		res.json(comment);
+	});
+});
+
+router.put('/items/:item/comments/:comment/downvote', function(req, res, next) {
 	req.comment.upvote(function(err, comment) {
 		if (err) { return next(err); }
 
