@@ -11,6 +11,7 @@ var mongoose = require('mongoose');
 require('./models/Items');
 require('./models/Comments');
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/news');
 
 var index = require('./routes/index');
