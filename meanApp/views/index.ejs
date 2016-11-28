@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MEAN</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="stylesheets/style.css">
+	<link rel="shortcut icon" type="image/png" href="images/glyphicons-2-leaf.png"/>
+	<!-- Load scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+    <script src="/javascripts/angularApp.js"></script>
+</head>
+<body ng-app="meanApp">
+	<section class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<ui-view></ui-view>
+		</div>
+
+	</section>
+	<!-- Home page -->
+	<script type="text/ng-template" id="/home.html">
+		<div class="page-header">
+			<h1>UPVOTE LIST</h1>
+		</div>
+		<div class="items" ng-repeat="(index, item) in items | orderBy: '-upvotes'">
+			<span class="glyphicon glyphicon-circle-arrow-up" ng-click="i.increaseUpvotes(item)"></span>
+
+			<a href="{{item.link}}" ng-show="item.link">{{item.title}}</a>
+			<span ng-hide="item.link">{{item.title | lowercase}}</span>
+			<span class="glyphicon glyphicon-circle-arrow-down" ng-click="i.decreaseUpvotes(item)"></span>
+			<span>({{item.upvotes}})</span>
+			<span>
+				<a href="#/items/{{items.indexOf(item)}}">Comments</a>
+			</span>
+			<span ng-show="item.comments">({{item.comments.length}})</span>
+			<span ng-hide="item.comments">(0)</span>
+		</div>
+
+		<form ng-submit="addItem()" class="form-group">
+			<input class="form-control" type="text" placeholder="Title" ng-model="title" />
+			<input class="form-control" type="text" placeholder="Link" ng-model="link" />
+			<button class="btn btn-primary type="submit">Add Item</button>
+		</form>
+	</script>
+	<!-- comment page -->
+	<script type="text/ng-template" id="/items.html">
+		<div class="page-header">
+			<h3><a href="{{item.link}}" ng-show="item.link"><span>{{item.title}}</span></a>
+			<span ng-hide="item.link">{{item.title}}</span></h3>
+		</div>
+		<div class="items" ng-repeat="comment in item.comments | orderBy: '-upvotes'">
+			<span class="glyphicon glyphicon-circle-arrow-up" ng-click="i.increaseUpvotes(comment)"></span>
+			<span>({{comment.upvotes}})</span>
+			<span class="glyphicon glyphicon-circle-arrow-down" ng-click="i.decreaseUpvotes(comment)"></span>
+			<span>{{comment.body}}</span>
+
+			<span> - by {{comment.author}}</span>
+		</div>
+		<form ng-submit="addComment()" class="form-group">
+			<h3>Join in the conversation</h3>
+			<input class="form-control" type="text" placeholder="Your Name Here" ng-model="user" />
+			<input class="form-control" type="text" placeholder="Comment" ng-model="body" />
+			<button class="btn btn-primary type="submit">Add Comment</button>
+		</form>
+		<span>
+			<a href="#/home/">Back to List</a>
+		</span>
+	</script>
+</body>
+</html>
