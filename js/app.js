@@ -7,7 +7,7 @@
 	app.factory('items', [function(){
 		var o = {
 			items: [
-			{title: 'Broccoli', upvotes: 3, comments:[{author: 'Fred', body: 'I love Broccoli', upvotes: 0}]},
+			{title: 'Broccoli', upvotes: 3, comments:[{author: 'Fred', body: 'I love Broccoli!', upvotes: 0}]},
 		],
 		increaseUpvotes : function(item) {
 			item.upvotes += 1;
