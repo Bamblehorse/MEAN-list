@@ -1,3 +1,24 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MEAN</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="stylesheets/style.css">
+	<link rel="shortcut icon" type="image/png" href="images/glyphicons-2-leaf.png"/>
+</head>
+<body>
+<style type="text/css">
+body {
+	background-color: skyblue;
+}
+h3 {
+	color: snow;
+}
+
+</style>
+	<h1>It's not you. It's me.</h1>
+	<h3><%= error.status %> - <%= message %></h3>
+
+	<pre><%= error.stack %></pre>
+
+</body>
