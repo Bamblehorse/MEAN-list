@@ -71,7 +71,12 @@
 	    .state('home', {
 	      url: '/home',
 	      templateUrl: '/home.html',
-	      controller: 'MainCtrl'
+	      controller: 'MainCtrl',
+	      resolve: {
+	      	itemPromise: ['items', function(items) {
+	      		return items.getAll();
+	      	}]
+	      }
 	    })
 
 	    .state('items', {
