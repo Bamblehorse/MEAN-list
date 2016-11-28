@@ -47,7 +47,8 @@ router.post('/items/:item/comments', function(req, res, next) {
 	});
 });
 
-router.param('item', function(req, res,next, id) {
+// retrieve items based on :item query
+router.param('item', function(req, res, next, id) {
 	var query = Item.findById(id);
 
 	query.exec(function (err, item) {
@@ -59,15 +60,35 @@ router.param('item', function(req, res,next, id) {
 	});
 });
 
+router.param('comment', function(req, res, next, id) {
+	var query = Comment.findById(id);
+
+	query.exec(function (err, comment) {
+		if (err) { return next(err); }
+		if (!comment) { return next(new Error('can\'t find item')); }
+
+		req.comment = comment;
+		return next();
+	});
+});
+
 router.get('/items/:item', function(req, res) {
 	res.json(req.item);
 });
 
 router.put('/items/:item/upvote', function(req, res, next) {
-	req.item.upvote(function(err, post) {
+	req.item.upvote(function(err, item) {
 		if (err) { return next(err); }
 
-		res.json(post);
+		res.json(item);
+	});
+});
+
+router.put('/items/:item/comments/:comment/upvote', function(req, res, next) {
+	req.comment.upvote(function(err, comment) {
+		if (err) { return next(err); }
+
+		res.json(comment);
 	});
 });
 
