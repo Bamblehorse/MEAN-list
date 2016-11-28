@@ -4,17 +4,20 @@
 
 	var app = angular.module('meanApp', ['ui.router']);
 
-	app.factory('items', [function(){
+	app.factory('items', ['$http', function($http){
 		var o = {
-			items: [
-			{title: 'Broccoli', upvotes: 3, comments:[{author: 'Fred', body: 'I love Broccoli!', upvotes: 0}]},
-		],
+      items: [],
 		increaseUpvotes : function(item) {
 			item.upvotes += 1;
 		},
 		decreaseUpvotes : function(item) {
 			item.upvotes -= 1;
-		}
+		},
+		getAll : function() {
+			return $http.get('/items').success(function(data) {
+				angular.copy(data, o.items);
+			});
+		},
 	};
 		return o;
 	}]);
