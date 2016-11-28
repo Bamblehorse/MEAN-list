@@ -8,10 +8,10 @@
 		var o = {
       items: [],
 		increaseUpvotes : function(item) {
-			item.upvotes += 1;
+			o.upVote(item);
 		},
 		decreaseUpvotes : function(item) {
-			item.upvotes -= 1;
+			o.downVote(item);
 		},
 		getAll : function() {
 			return $http.get('/items').success(function(data) {
@@ -23,6 +23,18 @@
 				o.items.push(data);
 			});
 		},
+		upVote : function(item) {
+			return $http.put('/items/' + item._id + '/upvote')
+				.success(function(data) {
+					item.upvotes += 1;
+				});
+		},
+		downVote : function(item) {
+			return $http.put('/items/' + item._id + '/downvote')
+				.success(function(data) {
+					item.upvotes -= 1;
+				});
+		}
 	};
 		return o;
 	}]);
