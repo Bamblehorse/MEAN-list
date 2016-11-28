@@ -1,0 +1,17 @@
+{
+  "name": "MEAN-list",
+  "version": "1.0.0",
+  "description": "A MEAN application",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jon",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.17.5",
+    "express-generator": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2"
+  }
+}
