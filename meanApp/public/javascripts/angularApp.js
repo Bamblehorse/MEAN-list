@@ -18,6 +18,11 @@
 				angular.copy(data, o.items);
 			});
 		},
+		create : function(item) {
+			return $http.post('/items', item).success(function(data) {
+				o.items.push(data);
+			});
+		},
 	};
 		return o;
 	}]);
@@ -30,7 +35,7 @@
 		$scope.i = items;
 		$scope.addItem = function() {
 			if (!$scope.title || $scope.title === '') { return; }
-			$scope.items.push({
+			items.create({
 				title: $scope.title,
 				link: $scope.link,
 				upvotes: 0,
