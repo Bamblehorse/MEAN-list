@@ -30,6 +30,22 @@ router.post('/items', function(req, res, next) {
 	});
 });
 
+// Post comments on items
+router.post('/items/:item/comments', function(req, res, next) {
+	var comment = new Comment(req.body);
+	comment.item = req.item;
+
+	comment.save(function(err, comment) {
+		if (err) { return next(err); }
+
+		req.item.comments.push(comment);
+		req.item.save(function(err, item) {
+			if(err) { return next(err); }
+
+			res.json(comment);
+		});
+	});
+});
 
 router.param('item', function(req, res,next, id) {
 	var query = Item.findById(id);
