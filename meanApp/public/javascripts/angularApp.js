@@ -41,7 +41,7 @@
 			});
 		},
 		addComment : function(id, comment) {
-			return $http.post('/posts/' + id + '/comments', comment);
+			return $http.post('/items/' + id + '/comments', comment);
 		},
 
 	};
@@ -78,10 +78,12 @@
 		$scope.addComment = function() {
 			if ($scope.body === '') { return; }
 			if ($scope.user === '') {$scope.user = 'Anonymous';}
-			$scope.item.comments.push({
+			items.addComment(item._id, {
 				body: $scope.body,
 				author: $scope.user,
 				upvotes: 0
+			}).success(function(comment) {
+				$scope.item.comments.push(comment);
 			});
 			$scope.body = '';
 			$scope.user = '';
