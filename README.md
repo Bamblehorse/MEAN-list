@@ -4,6 +4,11 @@ A MEAN stack application. Inspired by [thinkster.io](https://thinkster.io/mean-s
 
 Live demo on [github pages](https://jonathandwood.github.io/MEAN-list/).
 
+###TODO
+
+ - [ ] Add (user authentication) [https://thinkster.io/mean-stack-tutorial#adding-authentication-via-passport]
+ - [ ] Deploy (to Heroku)[http://www.tilcode.com/deploying-a-mean-stack-app-to-heroku/]
+
 ## Getting Started
 Below you will find instructions for setting the project up on your local machine.
 
