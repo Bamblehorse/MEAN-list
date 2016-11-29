@@ -34,7 +34,16 @@
 				.success(function(data) {
 					item.upvotes -= 1;
 				});
-		}
+		},
+		get : function(id) {
+			return $http.get('/items/ + id').then(function(res) {
+				return res.data;
+			});
+		},
+		addComment : function(id, comment) {
+			return $http.post('/posts/' + id + '/comments', comment);
+		},
+
 	};
 		return o;
 	}]);
@@ -61,11 +70,11 @@
 
 	app.controller('ItemsCtrl', [
 	'$scope',
-	'$stateParams',
 	'items',
-	function($scope, $stateParams, items) {
+	'item',
+	function($scope, items, item) {
 		$scope.i = items;
-		$scope.item = items.items[$stateParams.id];
+		$scope.item = item;
 		$scope.addComment = function() {
 			if ($scope.body === '') { return; }
 			if ($scope.user === '') {$scope.user = 'Anonymous';}
@@ -99,7 +108,12 @@
 	    .state('items', {
 	    	url: '/items/{id}',
 	    	templateUrl: '/items.html',
-	    	controller: 'ItemsCtrl'
+	    	controller: 'ItemsCtrl',
+	    	resolve: {
+	    		item: ['$stateParams', 'items', function($stateParams, items) {
+	    			return items.get($stateParams.id);
+	    		}]
+	    	}
 	    });
 
 	  $urlRouterProvider.otherwise('home');
