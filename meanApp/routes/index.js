@@ -30,23 +30,6 @@ router.post('/items', function(req, res, next) {
 	});
 });
 
-// Post comments on items
-router.post('/items/:item/comments', function(req, res, next) {
-	var comment = new Comment(req.body);
-	comment.item = req.item;
-
-	comment.save(function(err, comment) {
-		if (err) { return next(err); }
-
-		req.item.comments.push(comment);
-		req.item.save(function(err, item) {
-			if(err) { return next(err); }
-
-			res.json(comment);
-		});
-	});
-});
-
 // retrieve items based on :item query
 router.param('item', function(req, res, next, id) {
 	var query = Item.findById(id);
@@ -70,10 +53,6 @@ router.param('comment', function(req, res, next, id) {
 		req.comment = comment;
 		return next();
 	});
-});
-
-router.get('/items/:item', function(req, res) {
-	res.json(req.item);
 });
 
 router.put('/items/:item/upvote', function(req, res, next) {
@@ -108,7 +87,7 @@ router.put('/items/:item/comments/:comment/downvote', function(req, res, next) {
 	});
 });
 
-router.get('items/:item', function(req, res, next) {
+router.get('/items/:item', function(req, res, next) {
 	req.item.populate('comments', function( err, item) {
 		if (err) {return next(err); }
 
@@ -116,6 +95,22 @@ router.get('items/:item', function(req, res, next) {
 	});
 });
 
+// Post comments on items
+router.post('/items/:item/comments', function(req, res, next) {
+	var comment = new Comment(req.body);
+	comment.item = req.item;
+
+	comment.save(function(err, comment) {
+		if (err) { return next(err); }
+
+		req.item.comments.push(comment);
+		req.item.save(function(err, item) {
+			if(err) { return next(err); }
+
+			res.json(comment);
+		});
+	});
+});
 module.exports = router;
 
 
