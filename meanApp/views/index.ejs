@@ -32,7 +32,7 @@
 			<span class="glyphicon glyphicon-circle-arrow-down" ng-click="i.decreaseUpvotes(item)"></span>
 			<span>({{item.upvotes}})</span>
 			<span>
-				<a href="#/items/{{items.indexOf(item)}}">Comments</a>
+				<a href="#/items/{{item._id}}">Comments</a>
 			</span>
 			<span ng-show="item.comments">({{item.comments.length}})</span>
 			<span ng-hide="item.comments">(0)</span>
