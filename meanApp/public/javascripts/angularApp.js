@@ -24,19 +24,33 @@
 			});
 		},
 		upVote : function(item) {
+			if (item.item) {
+				return $http.put('/items/' + item.item + '/comments/' + item._id + '/upvote')
+					.success(function(data) {
+						item.upvotes += 1;
+					});
+			} else {
 			return $http.put('/items/' + item._id + '/upvote')
 				.success(function(data) {
 					item.upvotes += 1;
 				});
+			}
 		},
 		downVote : function(item) {
+			if (item.item) {
+				return $http.put('/items/' + item.item + '/comments/' + item._id + '/downvote')
+					.success(function(data) {
+						item.upvotes -= 1;
+					});
+			} else {
 			return $http.put('/items/' + item._id + '/downvote')
 				.success(function(data) {
 					item.upvotes -= 1;
 				});
+			}
 		},
 		get : function(id) {
-			return $http.get('/items/ + id').then(function(res) {
+			return $http.get('/items/' + id).then(function(res) {
 				return res.data;
 			});
 		},
