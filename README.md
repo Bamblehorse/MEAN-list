@@ -2,7 +2,7 @@
 
 A MEAN stack application. Inspired by [thinkster.io](https://thinkster.io/mean-stack-tutorial)
 
-Live demo on [github pages](https://jonathandwood.github.io/MEAN-list/). Currently backend is not live as github only serves static pages. Will deploy to Heroku once user authentication is implemented - to prevent abuse.
+Live demo on [github pages](https://bamblehorse.github.io/MEAN-list/). Currently backend is not live as github only serves static pages. Will deploy to Heroku once user authentication is implemented - to prevent abuse.
 
 ###TODO
 
@@ -22,7 +22,7 @@ Navigate to a folder on your machine where you are happy to place the project fo
 
 Open up your command-line interface and type:
 ```
-git clone https://github.com/JonathanDWood/MEAN-list/
+git clone https://github.com/Bamblehorse/MEAN-list/
 ```
 Now change directories into the project directory:
 ```
@@ -44,7 +44,7 @@ If the project hasn't automatically opened in your browser, [click here.](http:/
 * [Npm/Node.js](https://nodejs.org/en/download/) and [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) - As above
 
 ## Author
-* **Jonathan Wood** - [Github](https://github.com/JonathanDWood/)
+* **Jonathan Wood** - [Github](https://github.com/Bamblehorse/)
 
 ## License
 See the [license](LICENSE) file for details
